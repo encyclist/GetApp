@@ -8,24 +8,6 @@
     android:layout_height="match_parent"
     tools:context="com.erning.getapp.ui.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbarlayout"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        tools:layout_editor_absoluteY="1dp">
-
-        <android.support.v7.widget.Toolbar
-            app:title="@string/app_name"
-            app:navigationIcon="@null"
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </android.support.design.widget.AppBarLayout>
-
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"

@@ -24,4 +24,10 @@ public class BaseActivity extends AppCompatActivity {
             progressDialog.dismiss();
         }
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return super.onSupportNavigateUp();
+    }
 }

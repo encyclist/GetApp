@@ -22,5 +22,6 @@
         android:title="系统垃圾箱" />
 
     <item
-        android:title="取消" />
+        android:id="@+id/menu_about"
+        android:title="关于" />
 </menu>

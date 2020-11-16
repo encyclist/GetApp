@@ -39,7 +39,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
 
         requestPermission()
 
@@ -50,7 +49,7 @@ class MainActivity : BaseActivity() {
         listview.setOnItemClickListener { _, _, position, _ ->
             val select = adapter.getItem(position)
 
-            val items = arrayOf("启动","打开某个页面","复制到储存卡","卸载","取消")
+            val items = arrayOf("启动","打开某个页面","复制到储存卡","卸载")
             AlertDialog.Builder(this)
                     .setTitle("你要做什么")
                     .setItems(items) { _, which ->
@@ -108,6 +107,9 @@ class MainActivity : BaseActivity() {
             }
             R.id.menu_backup -> {
                 startActivity<BackupActivity>()
+            }
+            R.id.menu_about ->{
+                startActivity<AboutActivity>()
             }
         }
         val mSearchAutoComplete = mSearchView?.findViewById<SearchView.SearchAutoComplete>(R.id.search_src_text)

@@ -22,8 +22,7 @@ class ActivitiesActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_activities)
-        setSupportActionBar(toolbar_activity)
-        toolbar_activity.title = intent.getStringExtra("appName")
+        supportActionBar?.title = intent.getStringExtra("appName")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         list_activity.setOnItemClickListener { _, _, i, _ ->
@@ -45,11 +44,6 @@ class ActivitiesActivity : BaseActivity() {
                 list_activity.adapter = Adapter()
             }
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return super.onSupportNavigateUp()
     }
 
     inner class Adapter:BaseAdapter(){

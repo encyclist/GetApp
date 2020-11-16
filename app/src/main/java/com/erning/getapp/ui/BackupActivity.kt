@@ -1,29 +1,28 @@
 package com.erning.getapp.ui
 
-import android.annotation.SuppressLint
-import android.support.v7.app.AppCompatActivity
+import android.content.pm.PackageInfo
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.erning.getapp.bean.BackupBean
-import kotlinx.android.synthetic.main.activity_backup.*
-import java.io.File
-import android.content.pm.PackageInfo
-import android.util.DisplayMetrics
 import com.erning.getapp.R
+import com.erning.getapp.bean.BackupBean
+import com.erning.getapp.ui.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_backup.*
 import org.jetbrains.anko.toast
+import java.io.File
 
-class BackupActivity : AppCompatActivity() {
+class BackupActivity : BaseActivity() {
     private val fileList = ArrayList<BackupBean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_backup)
-        setSupportActionBar(toolbar_backup)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         getBackup()
@@ -58,11 +57,6 @@ class BackupActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return super.onSupportNavigateUp()
     }
 
     inner class Adapter:BaseAdapter(){
