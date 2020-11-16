@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_search"
+        android:orderInCategory="100"
+        android:title="搜索"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_user"
+        android:title="只看用户应用" />
+
+    <item
+        android:id="@+id/menu_system"
+        android:title="只看系统应用" />
+
+    <item
+        android:id="@+id/menu_backup"
+        android:title="系统垃圾箱" />
+
+    <item
+        android:title="取消" />
+</menu>
