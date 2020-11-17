@@ -37,11 +37,11 @@ class BackupActivity : BaseActivity() {
             toast(R.string.suspended_development)
     }
 
-    private fun add(file:File){
+    private fun add(file:File){ // /data/data/com.erning.getapp/files/user
         if (file.exists()) {
-            file.listFiles().forEach { dir ->
+            file.listFiles().forEach { dir -> // /data/data/com.erning.getapp/files/user/com.xxx.xxx/
                 Log.d("发现文件",dir.absolutePath)
-                dir.listFiles().forEach {
+                dir.listFiles().forEach { // /data/data/com.erning.getapp/files/user/com.xxx.xxx/yyy.apk
                     if (it.isFile && (it.name=="base.apk" || it.name=="${dir.name}.apk")){
                         //这是一个apk
                         val packageInfo = packageManager.getPackageArchiveInfo(it.absolutePath, 0)
