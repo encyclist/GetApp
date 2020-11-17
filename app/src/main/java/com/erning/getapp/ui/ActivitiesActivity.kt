@@ -30,6 +30,7 @@ class ActivitiesActivity : BaseActivity() {
             try {
                 val intent = Intent()
                 intent.component = ComponentName(item.packageName,item.name)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
             } catch (e: Exception) {
                 Toast.makeText(this@ActivitiesActivity, "哔了哈士奇了", Toast.LENGTH_SHORT).show()

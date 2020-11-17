@@ -1,6 +1,7 @@
 package com.erning.getapp.util
 
 import android.app.Activity
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.content.pm.ActivityInfo
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -29,7 +30,10 @@ class AppUtil {
             try {
                 val packageManager = activity.packageManager
                 val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
-                activity.startActivity(launchIntent)
+                if (launchIntent != null){
+                    launchIntent.flags = FLAG_ACTIVITY_NEW_TASK
+                    activity.startActivity(launchIntent)
+                }
             }catch (e:Exception){
                 activity.toast("哔了哈士奇了")
             }
