@@ -14,7 +14,7 @@
     <string name="caveat">警告</string>
     <string name="delete_system">这可能是系统的一部分，任然要删除吗？</string>
     <string name="strange">奇怪</string>
-    <string name="unkonw">我也不知道这是啥,先观察一阵子，暂时还是不要轻举妄动了。\\n%s</string>
+    <string name="unkonw">我也不知道这是啥,先观察一阵子，暂时还是不要轻举妄动了。\n%s</string>
     <string name="restart_effect">重启生效</string>
     <string name="restart_now">你想现在就重启吗</string>
     <string name="later">稍后</string>

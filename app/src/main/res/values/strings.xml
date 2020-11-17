@@ -15,7 +15,7 @@
     <string name="caveat">CAVEAT</string>
     <string name="delete_system">This may be part of the system, still want to delete it?</string>
     <string name="strange">STRANGE</string>
-    <string name="unkonw">I don\'t know what this is, so I\'ll observe it for a while, and don\'t act rashly for the time being.\\n%s</string>
+    <string name="unkonw">I don\'t know what this is, so I\'ll observe it for a while, and don\'t act rashly for the time being.\n%s</string>
     <string name="restart_effect">Restart to take effect</string>
     <string name="restart_now">Do you want to restart now</string>
     <string name="later">Later</string>
