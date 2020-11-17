@@ -5,23 +5,23 @@
     <item
         android:id="@+id/menu_search"
         android:orderInCategory="100"
-        android:title="搜索"
+        android:title="@string/search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_user"
-        android:title="只看用户应用" />
+        android:title="@string/look_user_app" />
 
     <item
         android:id="@+id/menu_system"
-        android:title="只看系统应用" />
+        android:title="@string/look_system_app" />
 
     <item
         android:id="@+id/menu_backup"
-        android:title="系统垃圾箱" />
+        android:title="@string/trash_can" />
 
     <item
         android:id="@+id/menu_about"
-        android:title="关于" />
+        android:title="@string/about" />
 </menu>

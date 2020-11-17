@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="action_main">
+        <item>Start up</item>
+        <item>Open a page</item>
+        <item>Copy to storage card</item>
+        <item>Uninstall</item>
+    </array>
+</resources>

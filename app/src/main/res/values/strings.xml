@@ -1,3 +1,35 @@
 <resources>
-    <string name="app_name">GetApp</string>
+    <string name="app_name" translatable="false">GetApp</string>
+    <string name="suspended_development">Insufficient funding, research and development suspended</string>
+    <string name="what_are_you_doing">what are you going to do</string>
+    <string name="total_apps">%s Applications</string>
+    <string name="copy_result">Copied to %s</string>
+    <string name="no_launchable_page">No launchable page</string>
+    <string name="cancel">Cancel</string>
+    <string name="not_know">I do not know</string>
+    <string name="remind">REMIND</string>
+    <string name="delete_built_in_application">Are you sure to delete this built-in application?</string>
+    <string name="determine">Determine</string>
+    <string name="note">NOTE</string>
+    <string name="delete_system_app">This is not a built-in application but a system application. Do you still want to delete it?</string>
+    <string name="caveat">CAVEAT</string>
+    <string name="delete_system">This may be part of the system, still want to delete it?</string>
+    <string name="strange">STRANGE</string>
+    <string name="unkonw">I don\'t know what this is, so I\'ll observe it for a while, and don\'t act rashly for the time being.\\n%s</string>
+    <string name="restart_effect">Restart to take effect</string>
+    <string name="restart_now">Do you want to restart now</string>
+    <string name="later">Later</string>
+    <string name="reboot">Reboot</string>
+    <string name="about_developer">About the developer:</string>
+
+    <string name="open_page">Open a page</string>
+    <string name="launch">Start up</string>
+    <string name="copy_apk">Copy to storage card</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="search">Search</string>
+    <string name="look_user_app">Just look user applications</string>
+    <string name="look_system_app">Just look system applications</string>
+    <string name="trash_can">System Trash can</string>
+    <string name="about">About</string>
+    <string name="backup">Backup</string>
 </resources>

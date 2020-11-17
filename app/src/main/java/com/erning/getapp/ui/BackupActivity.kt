@@ -34,7 +34,7 @@ class BackupActivity : BaseActivity() {
         add(File("${filesDir.absolutePath}/system"))
         add(File("${filesDir.absolutePath}/private"))
         if (fileList.isEmpty())
-            toast("经费不足 研发暂停")
+            toast(R.string.suspended_development)
     }
 
     private fun add(file:File){

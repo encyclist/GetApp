@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="action_main">
+        <item>启动</item>
+        <item>打开某个页面</item>
+        <item>复制到储存卡</item>
+        <item>卸载</item>
+    </array>
+</resources>

@@ -1,3 +1,34 @@
 <resources>
-    <string name="app_name">GetApp</string>
+    <string name="suspended_development">经费不足 研发暂停</string>
+    <string name="what_are_you_doing">你要做什么</string>
+    <string name="total_apps">共%s个应用</string>
+    <string name="copy_result">已复制到%s</string>
+    <string name="no_launchable_page">无可启动页面</string>
+    <string name="cancel">取消</string>
+    <string name="not_know">我不知道</string>
+    <string name="remind">提醒</string>
+    <string name="delete_built_in_application">确定删除这一内置应用吗？</string>
+    <string name="determine">确定</string>
+    <string name="note">注意</string>
+    <string name="delete_system_app">这不是内置应用而是系统应用，任然要删除吗？</string>
+    <string name="caveat">警告</string>
+    <string name="delete_system">这可能是系统的一部分，任然要删除吗？</string>
+    <string name="strange">奇怪</string>
+    <string name="unkonw">我也不知道这是啥,先观察一阵子，暂时还是不要轻举妄动了。\\n%s</string>
+    <string name="restart_effect">重启生效</string>
+    <string name="restart_now">你想现在就重启吗</string>
+    <string name="later">稍后</string>
+    <string name="reboot">重启</string>
+    <string name="about_developer">关于开发者：</string>
+
+    <string name="open_page">打开某个页面(雾)</string>
+    <string name="launch">启动</string>
+    <string name="copy_apk">复制到储存卡</string>
+    <string name="uninstall">卸载</string>
+    <string name="search">搜索</string>
+    <string name="look_user_app">只看用户应用</string>
+    <string name="look_system_app">只看系统应用</string>
+    <string name="trash_can">系统垃圾箱</string>
+    <string name="about">关于</string>
+    <string name="backup">备份</string>
 </resources>

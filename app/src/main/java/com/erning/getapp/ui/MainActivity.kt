@@ -49,10 +49,9 @@ class MainActivity : BaseActivity() {
         listview.setOnItemClickListener { _, _, position, _ ->
             val select = adapter.getItem(position)
 
-            val items = arrayOf("启动","打开某个页面","复制到储存卡","卸载")
             AlertDialog.Builder(this)
-                    .setTitle("你要做什么")
-                    .setItems(items) { _, which ->
+                    .setTitle(R.string.what_are_you_doing)
+                    .setItems(R.array.action_main) { _, which ->
                         function(select,which)
                     }
                     .show()
@@ -67,7 +66,7 @@ class MainActivity : BaseActivity() {
             data = AppUtil.getAllApk(packageManager)
             runOnUiThread {
                 hideProgressDialog()
-                toast("共"+data.size+"个应用")
+                toast(String.format(getString(R.string.total_apps),data.size))
                 val list = data.filter { it.isSystem.not() }
                 adapter.setData(list)
                 listview.adapter = adapter
@@ -139,7 +138,7 @@ class MainActivity : BaseActivity() {
                     val file2 = File(downloadDir,app.appName + ".apk")
                     file.copyTo(file2,true)
                     runOnUiThread {
-                        toast("已复制到${file2.absolutePath}")
+                        toast(String.format(getString(R.string.copy_result),file2.absolutePath))
                         hideProgressDialog()
                     }
                 }
@@ -151,7 +150,7 @@ class MainActivity : BaseActivity() {
                 if (app.activities != null){
                     startActivity<ActivitiesActivity>(Pair("packName",app.appPackageName),Pair("appName",app.appName))
                 }else{
-                    toast("无可启动页面")
+                    toast(R.string.no_launchable_page)
                 }
             }
             3, R.id.menu_4 -> {
@@ -230,15 +229,15 @@ class MainActivity : BaseActivity() {
         if (temp.exists().not()) temp.mkdir()
 
         val builder = AlertDialog.Builder(this)
-        builder.setNegativeButton("取消",null)
-        builder.setNeutralButton("我不知道",null)
+        builder.setNegativeButton(R.string.cancel,null)
+        builder.setNeutralButton(R.string.not_know,null)
 
         when {
             file.absolutePath.startsWith("/data/app/") -> {
                 // 内置应用
-                builder.setTitle("提醒")
-                builder.setMessage("确定删除这一内置应用吗？")
-                builder.setPositiveButton("确定") { _, _ ->
+                builder.setTitle(R.string.remind)
+                builder.setMessage(R.string.delete_built_in_application)
+                builder.setPositiveButton(R.string.determine) { _, _ ->
                     showProgressDialog()
                     doAsync {
                         RootCmd.execRootCmdSilent("rm -r ${filesDir.absolutePath}/private/${parent.name}")
@@ -249,9 +248,9 @@ class MainActivity : BaseActivity() {
             }
             file.absolutePath.startsWith("/system/app/") -> {
                 // 系统应用
-                builder.setTitle("注意")
-                builder.setMessage("这不是内置应用而是系统应用，任然要删除吗？")
-                builder.setPositiveButton("确定") { _, _ ->
+                builder.setTitle(R.string.note)
+                builder.setMessage(R.string.delete_system_app)
+                builder.setPositiveButton(R.string.determine) { _, _ ->
                     showProgressDialog()
                     doAsync {
                         RootCmd.execRootCmdSilent("rm -r ${filesDir.absolutePath}/private/${parent.name}")
@@ -262,9 +261,9 @@ class MainActivity : BaseActivity() {
             }
             file.absolutePath.startsWith("/system/priv-app/") -> {
                 // 系统核心应用
-                builder.setTitle("警告")
-                builder.setMessage("这可能是系统的一部分，任然要删除吗？")
-                builder.setPositiveButton("确定") { _, _ ->
+                builder.setTitle(R.string.caveat)
+                builder.setMessage(R.string.delete_system)
+                builder.setPositiveButton(R.string.determine) { _, _ ->
                     showProgressDialog()
                     doAsync {
                         RootCmd.execRootCmdSilent("rm -r ${filesDir.absolutePath}/private/${parent.name}")
@@ -274,9 +273,9 @@ class MainActivity : BaseActivity() {
                 }
             }
             else -> {
-                builder.setTitle("奇怪")
-                builder.setMessage("我也不知道这是啥,先观察一阵子，暂时还是不要轻举妄动了。\n${parent.absolutePath}")
-                builder.setPositiveButton("确定", null)
+                builder.setTitle(R.string.strange)
+                builder.setMessage(String.format(getString(R.string.unkonw),parent.absolutePath))
+                builder.setPositiveButton(R.string.determine, null)
             }
         }
         builder.show()
@@ -293,10 +292,10 @@ class MainActivity : BaseActivity() {
         runOnUiThread {
             hideProgressDialog()
             val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("重启生效")
-            builder.setMessage("你想现在就重启吗")
-            builder.setNegativeButton("稍后",null)
-            builder.setPositiveButton("重启") { _, _ ->
+            builder.setTitle(R.string.restart_effect)
+            builder.setMessage(R.string.restart_now)
+            builder.setNegativeButton(R.string.later,null)
+            builder.setPositiveButton(R.string.reboot) { _, _ ->
                 RootCmd.execRootCmdSilent("reboot")
             }
             builder.show()
