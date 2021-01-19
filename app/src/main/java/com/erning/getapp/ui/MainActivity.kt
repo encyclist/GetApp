@@ -84,7 +84,7 @@ class MainActivity : BaseActivity() {
             override fun onQueryTextSubmit(query: String?) = false
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?:return false
-                val list = data.filter { it.isSystem==selectIsSystem && (it.appName.contains(newText,true)||it.appPackageName.contains(newText,true)) }
+                val list = data.filter { it.isSystem==selectIsSystem && (it.appName.contains(newText,true)||it.appPackageName.contains(newText,true)||it.targetSdkVersion.toString().contains(newText,true)) }
                 adapter.setData(list)
                 return false
             }
