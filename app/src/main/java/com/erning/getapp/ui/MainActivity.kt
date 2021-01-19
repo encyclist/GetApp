@@ -201,12 +201,14 @@ class MainActivity : BaseActivity() {
             val name = view.findViewById<TextView>(R.id.name)
             val pack = view.findViewById<TextView>(R.id.pack)
             val size = view.findViewById<TextView>(R.id.size)
+            val target = view.findViewById<TextView>(R.id.target)
             val item = list[position]
 
             icon.setImageDrawable(item.appIcon)
             name.text = item.appName
             pack.text = item.appPackageName
             size.text = item.appSizeFormat
+            target.text = String.format(getString(R.string.target),item.targetSdkVersion)
 
             return view
         }

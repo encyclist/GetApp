@@ -19,6 +19,7 @@ public class AppBean {
     private boolean isSd=false;
     private boolean isSystem=false;
     private String appPackageName;
+    private int targetSdkVersion;
     private ActivityInfo[] activities = null;
 
     public String getApkPath() {
@@ -96,6 +97,14 @@ public class AppBean {
 
     public void setActivities(ActivityInfo[] activities) {
         this.activities = activities;
+    }
+
+    public int getTargetSdkVersion() {
+        return targetSdkVersion;
+    }
+
+    public void setTargetSdkVersion(int targetSdkVersion) {
+        this.targetSdkVersion = targetSdkVersion;
     }
 
     @Override

@@ -51,6 +51,7 @@ class AppUtil {
                 bean.appName = packageManager.getApplicationLabel(p.applicationInfo).toString()
                 bean.appPackageName = p.applicationInfo.packageName
                 bean.apkPath = p.applicationInfo.sourceDir
+                bean.targetSdkVersion = p.applicationInfo.targetSdkVersion
                 val file = File(p.applicationInfo.sourceDir)
                 bean.appSize = file.length()
                 val flags = p.applicationInfo.flags
