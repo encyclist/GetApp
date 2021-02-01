@@ -18,6 +18,7 @@ public class AppBean {
     private long appSize;
     private boolean isSd=false;
     private boolean isSystem=false;
+    private boolean isDebug=false;
     private String appPackageName;
     private int targetSdkVersion;
     private ActivityInfo[] activities = null;
@@ -105,6 +106,14 @@ public class AppBean {
 
     public void setTargetSdkVersion(int targetSdkVersion) {
         this.targetSdkVersion = targetSdkVersion;
+    }
+
+    public boolean isDebug() {
+        return isDebug;
+    }
+
+    public void setDebug(boolean debug) {
+        isDebug = debug;
     }
 
     @Override

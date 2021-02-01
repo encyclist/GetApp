@@ -202,6 +202,7 @@ class MainActivity : BaseActivity() {
             val pack = view.findViewById<TextView>(R.id.pack)
             val size = view.findViewById<TextView>(R.id.size)
             val target = view.findViewById<TextView>(R.id.target)
+            val debug = view.findViewById<ImageView>(R.id.debug)
             val item = list[position]
 
             icon.setImageDrawable(item.appIcon)
@@ -209,6 +210,7 @@ class MainActivity : BaseActivity() {
             pack.text = item.appPackageName
             size.text = item.appSizeFormat
             target.text = String.format(getString(R.string.target),item.targetSdkVersion)
+            debug.visibility = if (item.isDebug) View.VISIBLE else View.GONE
 
             return view
         }

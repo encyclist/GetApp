@@ -52,6 +52,7 @@ class AppUtil {
                 bean.appPackageName = p.applicationInfo.packageName
                 bean.apkPath = p.applicationInfo.sourceDir
                 bean.targetSdkVersion = p.applicationInfo.targetSdkVersion
+                bean.isDebug = (p.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
                 val file = File(p.applicationInfo.sourceDir)
                 bean.appSize = file.length()
                 val flags = p.applicationInfo.flags
