@@ -2,6 +2,7 @@ package com.erning.getapp.ui
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Paint
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -144,13 +145,21 @@ class MainActivity : BaseActivity() {
                 }
             }
             0, R.id.menu_2 -> {
-                AppUtil.openApp(this,app.appPackageName)
+                if (app.isEnabled) {
+                    AppUtil.openApp(this, app.appPackageName)
+                }else{
+                    toast("应用已停用")
+                }
             }
             1, R.id.menu_3 -> {
-                if (app.activities != null){
-                    startActivity<ActivitiesActivity>(Pair("packName",app.appPackageName),Pair("appName",app.appName))
+                if (app.isEnabled) {
+                    if (app.activities != null){
+                        startActivity<ActivitiesActivity>(Pair("packName",app.appPackageName),Pair("appName",app.appName))
+                    }else{
+                        toast(R.string.no_launchable_page)
+                    }
                 }else{
-                    toast(R.string.no_launchable_page)
+                    toast("应用已停用")
                 }
             }
             3, R.id.menu_4 -> {
@@ -206,6 +215,8 @@ class MainActivity : BaseActivity() {
             val item = list[position]
 
             icon.setImageDrawable(item.appIcon)
+            // 为禁用的APP添加删除线(中划线)
+            name.paint.flags = if (item.isEnabled) Paint.ANTI_ALIAS_FLAG else Paint.STRIKE_THRU_TEXT_FLAG or Paint.ANTI_ALIAS_FLAG
             name.text = item.appName
             pack.text = item.appPackageName
             size.text = item.appSizeFormat

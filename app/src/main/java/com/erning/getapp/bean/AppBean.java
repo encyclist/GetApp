@@ -7,6 +7,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by 二宁 on 2018/5/22.
@@ -18,6 +19,7 @@ public class AppBean {
     private long appSize;
     private boolean isSd=false;
     private boolean isSystem=false;
+    private boolean enabled=false;
     private boolean isDebug=false;
     private String appPackageName;
     private int targetSdkVersion;
@@ -116,6 +118,14 @@ public class AppBean {
         isDebug = debug;
     }
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public String toString() {
         return "AppBean{" +
@@ -124,7 +134,11 @@ public class AppBean {
                 ", appSize=" + appSize +
                 ", isSd=" + isSd +
                 ", isSystem=" + isSystem +
+                ", enabled=" + enabled +
+                ", isDebug=" + isDebug +
                 ", appPackageName='" + appPackageName + '\'' +
+                ", targetSdkVersion=" + targetSdkVersion +
+                ", activities=" + Arrays.toString(activities) +
                 ", apkPath='" + apkPath + '\'' +
                 '}';
     }
