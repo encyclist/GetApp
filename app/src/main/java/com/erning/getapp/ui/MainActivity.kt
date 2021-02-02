@@ -31,11 +31,11 @@ import org.jetbrains.anko.toast
 import java.io.File
 
 class MainActivity : BaseActivity() {
-    private lateinit var data:List<AppBean>
+    private lateinit var data: List<AppBean>
     private var selectItem = -1
     private val adapter = Adapter(ArrayList())
     private var selectIsSystem = false
-    private var mSearchView:SearchView? = null
+    private var mSearchView: SearchView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class MainActivity : BaseActivity() {
             AlertDialog.Builder(this)
                     .setTitle(R.string.what_are_you_doing)
                     .setItems(R.array.action_main) { _, which ->
-                        function(select,which)
+                        function(select, which)
                     }
                     .show()
         }
@@ -67,7 +67,7 @@ class MainActivity : BaseActivity() {
             data = AppUtil.getAllApk(packageManager)
             runOnUiThread {
                 hideProgressDialog()
-                toast(String.format(getString(R.string.total_apps),data.size))
+                toast(String.format(getString(R.string.total_apps), data.size))
                 val list = data.filter { it.isSystem.not() }
                 adapter.setData(list)
                 listview.adapter = adapter
@@ -77,15 +77,15 @@ class MainActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
-        if(mSearchView == null){
+        if (mSearchView == null) {
             val searchItem = menu.findItem(R.id.menu_search)
             mSearchView = searchItem.actionView as SearchView
         }
-        mSearchView?.setOnQueryTextListener(object :SearchView.OnQueryTextListener{
+        mSearchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?) = false
             override fun onQueryTextChange(newText: String?): Boolean {
-                newText?:return false
-                val list = data.filter { it.isSystem==selectIsSystem && (it.appName.contains(newText,true)||it.appPackageName.contains(newText,true)||it.targetSdkVersion.toString().contains(newText,true)) }
+                newText ?: return false
+                val list = data.filter { it.isSystem == selectIsSystem && (it.appName.contains(newText, true) || it.appPackageName.contains(newText, true) || it.targetSdkVersion.toString().contains(newText, true)) }
                 adapter.setData(list)
                 return false
             }
@@ -94,7 +94,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
+        when (item?.itemId) {
             R.id.menu_user -> {
                 selectIsSystem = false
                 val list = data.filter { it.isSystem.not() }
@@ -108,7 +108,7 @@ class MainActivity : BaseActivity() {
             R.id.menu_backup -> {
                 startActivity<BackupActivity>()
             }
-            R.id.menu_about ->{
+            R.id.menu_about -> {
                 startActivity<AboutActivity>()
             }
         }
@@ -118,28 +118,28 @@ class MainActivity : BaseActivity() {
     }
 
     override fun onContextItemSelected(item: MenuItem?): Boolean {
-        if (item == null || data.size <= selectItem){
+        if (item == null || data.size <= selectItem) {
             return super.onContextItemSelected(item)
         }
         val select = adapter.getItem(selectItem)
-        function(select,item.itemId)
+        function(select, item.itemId)
         return super.onContextItemSelected(item)
     }
 
-    private fun function(app:AppBean,action:Int){
-        when(action) {
+    private fun function(app: AppBean, action: Int) {
+        when (action) {
             2, R.id.menu_1 -> {
                 showProgressDialog()
                 doAsync {
                     val file = File(app.apkPath)
                     val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    if (downloadDir.exists().not()){
+                    if (downloadDir.exists().not()) {
                         downloadDir.mkdirs()
                     }
-                    val file2 = File(downloadDir,app.appName + ".apk")
-                    file.copyTo(file2,true)
+                    val file2 = File(downloadDir, app.appName + ".apk")
+                    file.copyTo(file2, true)
                     runOnUiThread {
-                        toast(String.format(getString(R.string.copy_result),file2.absolutePath))
+                        toast(String.format(getString(R.string.copy_result), file2.absolutePath))
                         hideProgressDialog()
                     }
                 }
@@ -147,32 +147,32 @@ class MainActivity : BaseActivity() {
             0, R.id.menu_2 -> {
                 if (app.isEnabled) {
                     AppUtil.openApp(this, app.appPackageName)
-                }else{
+                } else {
                     toast("应用已停用")
                 }
             }
             1, R.id.menu_3 -> {
                 if (app.isEnabled) {
-                    if (app.activities != null){
-                        startActivity<ActivitiesActivity>(Pair("packName",app.appPackageName),Pair("appName",app.appName))
-                    }else{
+                    if (app.activities != null) {
+                        startActivity<ActivitiesActivity>(Pair("packName", app.appPackageName), Pair("appName", app.appName))
+                    } else {
                         toast(R.string.no_launchable_page)
                     }
-                }else{
+                } else {
                     toast("应用已停用")
                 }
             }
             3, R.id.menu_4 -> {
-                if (app.isSystem && RootCmd.haveRootForTest()){
+                if (app.isSystem && RootCmd.haveRootForTest()) {
                     try {
                         unInstall(File(app.apkPath))
-                    }catch (e:Exception){
+                    } catch (e: Exception) {
                         e.printStackTrace()
                         val packageURI = Uri.parse("package:${app.appPackageName}")
                         val uninstallIntent = Intent(Intent.ACTION_DELETE, packageURI)
                         startActivity(uninstallIntent)
                     }
-                }else{
+                } else {
                     val packageURI = Uri.parse("package:${app.appPackageName}")
                     val uninstallIntent = Intent(Intent.ACTION_DELETE, packageURI)
                     startActivity(uninstallIntent)
@@ -220,21 +220,21 @@ class MainActivity : BaseActivity() {
             name.text = item.appName
             pack.text = item.appPackageName
             size.text = item.appSizeFormat
-            target.text = String.format(getString(R.string.target),item.targetSdkVersion)
+            target.text = String.format(getString(R.string.target), item.targetSdkVersion)
             debug.visibility = if (item.isDebug) View.VISIBLE else View.GONE
 
             return view
         }
 
-        fun setData(data: List<AppBean>){
+        fun setData(data: List<AppBean>) {
             list.clear()
             list.addAll(data)
             notifyDataSetChanged()
         }
     }
 
-    private fun unInstall(file:File){
-        Log.d("apk目录",file.absolutePath)
+    private fun unInstall(file: File) {
+        Log.d("apk目录", file.absolutePath)
         val parent = file.parentFile
         var temp = File(filesDir.absolutePath + "/user")
         if (temp.exists().not()) temp.mkdir()
@@ -244,8 +244,8 @@ class MainActivity : BaseActivity() {
         if (temp.exists().not()) temp.mkdir()
 
         val builder = AlertDialog.Builder(this)
-        builder.setNegativeButton(R.string.cancel,null)
-        builder.setNeutralButton(R.string.not_know,null)
+        builder.setNegativeButton(R.string.cancel, null)
+        builder.setNeutralButton(R.string.not_know, null)
 
         when {
             file.absolutePath.startsWith("/data/app/") -> {
@@ -289,19 +289,19 @@ class MainActivity : BaseActivity() {
             }
             else -> {
                 builder.setTitle(R.string.strange)
-                builder.setMessage(String.format(getString(R.string.unkonw),parent.absolutePath))
+                builder.setMessage(String.format(getString(R.string.unkonw), parent.absolutePath))
                 builder.setPositiveButton(R.string.determine, null)
             }
         }
         builder.show()
     }
 
-    private fun deleteDir(path:String){
-        if (path.startsWith("/system/app/")||path.startsWith("/system/priv-app/")){
+    private fun deleteDir(path: String) {
+        if (path.startsWith("/system/app/") || path.startsWith("/system/priv-app/")) {
             RootCmd.execRootCmd("mount -o remount,rw /system")//挂载为读写
             RootCmd.execRootCmd("rm -r $path")//删除
             RootCmd.execRootCmd("mount -o remount,ro /system")//挂载为只读
-        }else {
+        } else {
             RootCmd.execRootCmd("rm -r $path")//删除
         }
         runOnUiThread {
@@ -309,7 +309,7 @@ class MainActivity : BaseActivity() {
             val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle(R.string.restart_effect)
             builder.setMessage(R.string.restart_now)
-            builder.setNegativeButton(R.string.later,null)
+            builder.setNegativeButton(R.string.later, null)
             builder.setPositiveButton(R.string.reboot) { _, _ ->
                 RootCmd.execRootCmdSilent("reboot")
             }

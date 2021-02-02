@@ -126,6 +126,8 @@ public class AppBean {
         this.enabled = enabled;
     }
 
+
+
     @Override
     public String toString() {
         return "AppBean{" +
